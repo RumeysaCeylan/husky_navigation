@@ -3,6 +3,7 @@
 Navigation::Navigation() : Node("navigation")
 {
     #ifdef MANUAL
+    RCLCPP_INFO(this->get_logger(),"Manual Driving");
     joystic_sub = create_subscription<sensor_msgs::msg::Joy>("/joy",
         10, std::bind(&Navigation::ReadSensor, this, std::placeholders::_1));
         is_joy_connected = false;
