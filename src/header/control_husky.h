@@ -13,7 +13,9 @@ class Navigation : public rclcpp :: Node
             void check_joystick_connection();
             rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr joystic_sub; //create_sub shared pointer returns
             bool is_joy_connected;
-            rclcpp::Time last_joystick_data;
+            rclcpp::Clock steady_clock_{RCL_STEADY_TIME};
+
+            rclcpp::Time last_joystick_time_data{0, 0, RCL_STEADY_TIME};
             rclcpp::TimerBase::SharedPtr watchdog_timer; 
        #endif
        rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr twist_pub;

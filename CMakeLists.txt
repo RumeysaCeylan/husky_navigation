@@ -23,6 +23,11 @@ ament_target_dependencies(control_husky
   std_msgs
 )
 
+
+install(TARGETS control_husky
+  DESTINATION lib/${PROJECT_NAME})
+
+  
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
