@@ -33,7 +33,7 @@ void Navigation::ReadSensor(const sensor_msgs::msg::Joy::SharedPtr msg)
     twist.linear.y = msg->axes[3];
 
     twist.angular.z = -1.0*msg->axes[0];
-    RCLCPP_INFO(this->get_logger(), "Joy msg angular.z: %f\r linear.x: %f \r linear.y : %f\r\n", msg->axes[0], msg->axes[1], msg->axes[3]);
+    RCLCPP_INFO(this->get_logger(), "Joy msg angular.z: %f linear.x: %f linear.y : %f\r\n", msg->axes[0], msg->axes[1], msg->axes[3]);
     twist_pub->publish(twist);
 }
 
