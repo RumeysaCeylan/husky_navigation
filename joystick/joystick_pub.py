@@ -12,7 +12,7 @@ class MouseJoyPublisher(Node):
         super().__init__('robot_controller')
         self.pub = self.create_publisher(Joy, '/joy', 10)
         self.sub = self.create_subscription(Image, "/a200_0000/sensors/camera_0/color/image",self.show_image, 10)
-        self.timer = self.create_timer(0.02, self.publish_joy)  # 50 Hz
+        self.timer = self.create_timer(0.02, self.periodic_run)  # 50 Hz
 
         self.bridge = CvBridge()
         self.latest_frame = None
@@ -111,8 +111,7 @@ class MouseJoyPublisher(Node):
 
         pygame.display.flip()
 
-    def publish_joy(self):
-        # pump UI
+    def periodic_run(self):
         self.handle_events()
         self.draw()
         self.clock.tick(60)
@@ -122,6 +121,8 @@ class MouseJoyPublisher(Node):
         msg.axes = [self.ax, self.ay]
         msg.buttons = [self.btn]
         self.pub.publish(msg)
+
+
     def show_image(self , msg):
         cv_image = self.bridge.imgmsg_to_cv2(msg, 'bgr8')
         self.latest_frame = cv_image
