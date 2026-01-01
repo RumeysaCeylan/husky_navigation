@@ -102,8 +102,8 @@ class MouseJoyPublisher(Node):
             frame_rgb = frame[:, :, ::-1]               # BGR -> RGB
             frame_rgb = frame_rgb.swapaxes(0, 1)        # (H,W,3) -> (W,H,3)
             surf = pygame.surfarray.make_surface(frame_rgb)
-            surf = pygame.transform.smoothscale(surf, (600, 440))  # istediğin boyut
-            self.screen.blit(surf, (0, 360))            # joystick altı
+            surf = pygame.transform.smoothscale(surf, (600, 440))  
+            self.screen.blit(surf, (0, 360))        
         else:
             font = pygame.font.SysFont(None, 28)
             txt = font.render("Waiting for camera image...", True, (200, 200, 200))
